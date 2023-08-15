@@ -3,13 +3,13 @@
 import type { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { getProviders, signIn } from "next-auth/react"
 import { getServerSession } from "next-auth/next"
-import authOptions from "../api/auth/[...nextauth]";
+import authOptions from "@/pages/api/auth/[...nextauth]"
 
 export default function SignIn({ providers }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
-    <div className="rounded-md border border-gray-500 text-center p-3 m-5">
+    <div>
       {Object.values(providers).map((provider) => (
-        <div key={provider.name}>
+        <div key={provider.name} className="rounded-md border border-gray-500 text-center p-3 m-5 hover:shadow-md">
           <button onClick={() => signIn(provider.id)}>Sign in with {provider.name}</button>
         </div>
       ))}
